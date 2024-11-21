@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>API com Spring Boot</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="api-com-spring-boot">API com Spring Boot</h1>
+<h2 id="requisitos">Requisitos</h2>
+<p>Antes de iniciar o desenvolvimento, é necessário configurar o ambiente de desenvolvimento. Siga as etapas abaixo:</p>
+<h3 id="1-instalar-jdk">1. Instalar JDK</h3>
+<ul>
+<li>Baixe e instale o <a href="https://www.microsoft.com/openjdk">Java Development Kit (JDK)</a>.</li>
+</ul>
+<h3 id="2-instalar-extensões-no-vs-code">2. Instalar Extensões no VS Code</h3>
+<p>Para facilitar o desenvolvimento de aplicativos Spring Boot, instale as seguintes extensões no Visual Studio Code:</p>
+<ul>
+<li><strong>Extension Pack for Java</strong>: <a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack">Instalar no VS Code</a></li>
+<li><strong>Spring Boot Extension Pack</strong>: <a href="https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack">Instalar no VS Code</a></li>
+</ul>
+<h3 id="3-documentação-oficial">3. Documentação Oficial</h3>
+<p>Leia a documentação oficial para entender como configurar e trabalhar com Spring Boot no VS Code:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/java/java-spring-boot">Documentação de Spring Boot no VS Code</a></li>
+</ul>
+<h3 id="4-criar-um-projeto-spring-boot">4. Criar um Projeto Spring Boot</h3>
+<p>Acesse o site <a href="https://start.spring.io/">Spring Initializr</a> para gerar um projeto Spring Boot com as dependências necessárias.</p>
+<p><strong>Dependências recomendadas:</strong></p>
+<ul>
+<li><strong>Spring Web</strong></li>
+<li><strong>Spring Boot DevTools</strong></li>
+<li><strong>Lombok</strong></li>
+</ul>
+<p>Depois de gerar o projeto, extraia o arquivo compactado e abra-o no Visual Studio Code.</p>
+<h3 id="5-atualizar-dependências">5. Atualizar Dependências</h3>
+<p>Para garantir que todas as dependências estejam corretas, atualize o projeto usando o Maven. Certifique-se de que o arquivo <code>pom.xml</code> não contenha conflitos de dependências (nenhuma em vermelho).</p>
+<h2 id="executando-o-projeto">Executando o Projeto</h2>
+<p>Para executar o projeto, siga as etapas abaixo:</p>
+<ol>
+<li>
+<p>Abra o terminal no VS Code.</p>
+</li>
+<li>
+<p>Execute o comando para rodar a aplicação:</p>
+<pre><code class="language-bash">   mvn spring-boot:run
+</code></pre>
+</li>
+</ol>
+<h2 id="testando-a-api">Testando a API</h2>
+<p>Para testar faça uma requição para a seguinte URI:</p>
+<pre><code>```bash
+  http://localhost:8080/api/cats
+```
+</code></pre>
+<h1 id="gerando-documentação-de-api-usando-swagger">Gerando documentação de API usando Swagger:</h1>
+<ol>
+<li>Incluar as seguintes dependências no arquivo pom.xml:</li>
+</ol>
+<pre><code class="language-xml">     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springdoc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springdoc-openapi-starter-webmvc-ui<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.6.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ol start="2">
+<li>
+<p>Edite o arquivo application.properties</p>
+<pre><code class="language-properties">   <span class="hljs-attr">spring.security.user.name</span>=<span class="hljs-string">admin</span>
+   <span class="hljs-attr">spring.security.user.password</span>=<span class="hljs-string">admin</span>
+</code></pre>
+</li>
+<li>
+<p>Se o arquivo não existir criar no diretório resources</p>
+</li>
+</ol>
+<h2 id="visualizando-a-documentação">Visualizando a documentação</h2>
+<ol>
+<li>
+<p>Para visualizar a documentação gerada automaticamente acesse a seguinte URL no navegador:</p>
+<pre><code class="language-bash">   http://localhost:8080/swagger-ui/index.html
+</code></pre>
+</li>
+</ol>
+<h2 id="testando-requisições-para-api">Testando Requisições para API</h2>
+<ol>
+<li>Para testar API no VScode instale a seguinte extensão:</li>
+</ol>
+<ul>
+<li>Rest Client</li>
+</ul>
+<ol start="2">
+<li>Crie um arquivo .HTTP e insira as requisições.<pre><code class="language-bash">  GET http://localhost:8080/api/cats
+</code></pre>
+</li>
+</ol>
+
+            
+            
+        </body>
+        </html>
